@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MountingNYC Instagram Signage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one fixed 1920x1080 TV canvas, scaled to fit any screen. Left: followers hero. Right: tiles. Bottom: rotating talking point. */
+:root {
+  --navy: #001D35;
+  --navy-2: #032844;
+  --teal: #1F5F7A;
+  --teal-hi: #6FB1CC;
+  --cream: #FFFEF2;
+  --steel: #839DA8;
+  --muted: rgba(255,254,242,0.62);
+  --faint: rgba(255,254,242,0.12);
+  --good: #7FD39A;
+  --pink: #E1306C;
+  --pink-soft: rgba(225,48,108,0.18);
+  --ig: linear-gradient(90deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
+  --display: "Noto Serif Display", Georgia, serif;
+  --sans: "Mona Sans", "DM Sans", system-ui, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: var(--navy); color: var(--cream); overflow: hidden; }
+body { font-family: var(--sans); }
+#stage {
+  position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
+  transform-origin: center center; display: grid;
+  grid-template-rows: 112px 1fr 168px;
+  background:
+    radial-gradient(1200px 700px at 12% 40%, rgba(31,95,122,0.38), transparent 70%),
+    radial-gradient(900px 600px at 100% 100%, rgba(214,41,118,0.16), transparent 70%),
+    var(--navy);
+}
+/* Top bar */
+.bar { position: relative; background: var(--teal); display: flex; align-items: center; gap: 28px; padding: 0 64px; }
+.bar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: var(--ig); }
+.bar .logo { height: 58px; width: auto; display: block; }
+.word { font-weight: 600; font-size: 38px; letter-spacing: .01em; }
+.div { width: 2px; height: 46px; background: rgba(255,254,242,0.25); }
+.lbl { font-size: 22px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #fff; background: var(--ig); padding: 8px 18px; border-radius: 999px; }
+.clock { margin-left: auto; text-align: right; line-height: 1.1; }
+.clock .t { font: 400 46px var(--display); font-variant-numeric: tabular-nums; }
+.clock .d { font-size: 20px; color: rgba(255,254,242,0.75); letter-spacing: .06em; }
+
+/* Body */
+.body { display: grid; grid-template-columns: 900px 1fr; gap: 64px; padding: 64px 64px 40px; min-height: 0; }
+.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; background: var(--ig); -webkit-background-clip: text; background-clip: text; color: transparent; align-self: flex-start; }
+.hero { display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.handle { font: 500 34px var(--mono); color: var(--muted); }
+.big { font: 300 330px/0.95 var(--display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; margin-top: 6px; }
+.big-label { font-size: 40px; font-weight: 500; color: var(--cream); margin-top: -6px; }
+.delta { font-size: 34px; color: var(--muted); margin-top: 18px; }
+.delta b { color: var(--pink); font-weight: 600; }
+.goal { margin-top: 26px; }
+.goal .track { height: 18px; border-radius: 3px; background: var(--faint); overflow: hidden; }
+.goal .fill { height: 100%; background: linear-gradient(90deg, var(--teal-hi), var(--teal)); }
+.goal .cap { display: flex; justify-content: space-between; font-size: 24px; color: var(--muted); margin-top: 10px; font-variant-numeric: tabular-nums; }
+
+.tiles { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 2px; background: var(--faint); border-radius: 6px; overflow: hidden; align-self: center; height: 100%; max-height: 700px; }
+.tile { background: var(--navy-2); padding: 34px 40px; display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; }
+.tile .k { font-size: 22px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.tile .v { font: 300 104px/1 var(--display); font-variant-numeric: tabular-nums; }
+.tile .s { font-size: 24px; color: var(--muted); }
+.tile.wide { grid-column: 1 / -1; }
+.week { display: flex; gap: 14px; margin-top: 8px; }
+.day { flex: 1; text-align: center; padding: 14px 0; border-radius: 6px; font-size: 26px; font-weight: 600; color: var(--muted); background: rgba(255,254,242,0.05); border: 2px solid transparent; }
+.day.post { color: var(--cream); background: rgba(111,177,204,0.16); }
+.day.done { background: var(--pink); color: #fff; }
+.day.today { border-color: var(--pink); }
+
+/* Bottom talking point */
+.foot { border-top: 2px solid var(--faint); display: flex; align-items: center; gap: 36px; padding: 0 64px; }
+.chip { flex: none; color: #fff; font-size: 22px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 10px 18px; border-radius: 4px; background: var(--teal); }
+.tp { font: 300 50px/1.15 var(--display); transition: opacity .6s ease; min-width: 0; }
+.src { margin-left: auto; flex: none; font-size: 18px; color: var(--muted); text-align: right; line-height: 1.4; }
+/* +1 follower moment */
+.big-row { position: relative; display: inline-flex; align-items: flex-start; align-self: flex-start; }
+.pop {
+  position: absolute; left: 100%; top: 40px; margin-left: 28px; white-space: nowrap;
+  font: 400 150px/1 var(--display); background: var(--ig); -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; pointer-events: none;
+}
+.pop small { display: block; color: var(--pink); -webkit-text-fill-color: var(--pink); font: 600 28px var(--sans); letter-spacing: .16em; text-transform: uppercase; margin-top: 10px; }
+.pop.go { animation: pop 4.2s cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes pop {
+  0% { opacity: 0; transform: translateY(50px) scale(.7); }
+  12% { opacity: 1; transform: translateY(0) scale(1.06); }
+  20% { transform: scale(1); }
+  75% { opacity: 1; transform: translateY(-30px); }
+  100% { opacity: 0; transform: translateY(-90px); }
+}
+.big.bump { animation: bump 1.4s ease; transform-origin: left center; }
+@keyframes bump { 0% { color: var(--pink); transform: scale(1.05); } 100% { color: var(--cream); transform: none; } }
+#stage.glow::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 10px var(--pink), inset 0 0 120px var(--pink-soft); animation: glow 2.4s ease forwards;
+}
+@keyframes glow { 0% { opacity: 0; } 15% { opacity: .9; } 100% { opacity: 0; } }
+.tile .v.up { color: var(--pink); }
+.demo { color: var(--pink); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  .tp { transition: none; }
+  .pop.go { animation: none; opacity: 1; }
+  .big.bump, #stage.glow::after { animation: none; }
+}
+</style>
+</head>
+<body>
+<div id="stage">
+  <header class="bar">
+    <img class="logo" src="assets/mnyc-logo-white.png" alt="MountingNYC" height="58">
+    <span class="word">MountingNYC</span>
+    <span class="div"></span>
+    <span class="lbl">Instagram</span>
+    <div class="clock"><div class="t" id="time">--:--</div><div class="d" id="date"></div></div>
+  </header>
+
+  <section class="body">
+    <div class="hero">
+      <div class="eyebrow">Followers</div>
+      <div class="handle" id="handle">@mountingnyc</div>
+      <div class="big-row"><div class="big" id="followers">383</div><div class="pop" id="pop" aria-live="polite"></div></div>
+      <div class="delta" id="delta"></div>
+      <div class="goal" id="goal" hidden>
+        <div class="track"><div class="fill" id="goal-fill"></div></div>
+        <div class="cap"><span id="goal-left"></span><span id="goal-right"></span></div>
+      </div>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <footer class="foot">
+    <span class="chip" id="tp-kind">Myth</span>
+    <div class="tp" id="tp-text"></div>
+    <div class="src" id="src"></div>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const NY = "America/New_York";
+  const fmt = new Intl.NumberFormat("en-US");
+  const compact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
+  const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const nyDay = (d) => new Intl.DateTimeFormat("en-US", { timeZone: NY, weekday: "short" }).format(d);
+  const nyDate = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: NY }).format(d);
+  const nice = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    $("#stage").style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener("resize", fit); fit();
+
+  function tick() {
+    const now = new Date();
+    $("#time").textContent = now.toLocaleTimeString("en-US", { timeZone: NY, hour: "numeric", minute: "2-digit" });
+    $("#date").textContent = now.toLocaleDateString("en-US", { timeZone: NY, weekday: "long", month: "long", day: "numeric" });
+  }
+  setInterval(tick, 10000); tick();
+
+  async function getJSON(p) {
+    try { const r = await fetch(p, { cache: "no-store" }); return r.ok ? await r.json() : null; } catch (e) { return null; }
+  }
+
+  // ---- +1 follower moment ----
+  const DEMO = location.hash === "#demo";
+  let demoExtra = 0, shown = null, popTimer;
+  const store = { get() { try { return Number(localStorage.getItem("mnyc-sig-followers")) || null; } catch (e) { return null; } },
+                  set(v) { try { localStorage.setItem("mnyc-sig-followers", String(v)); } catch (e) {} } };
+  function countUp(from, to) {
+    const el = $("#followers"), t0 = performance.now(), dur = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1200;
+    const step = (t) => { const k = dur ? Math.min(1, (t - t0) / dur) : 1; el.textContent = fmt.format(Math.round(from + (to - from) * k)); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+  function celebrate(from, to) {
+    const n = to - from, pop = $("#pop"), big = $("#followers"), stage = $("#stage");
+    pop.innerHTML = `+${fmt.format(n)}<small>New follower${n > 1 ? "s" : ""}</small>`;
+    [pop, big, stage].forEach((el) => el.classList.remove("go", "bump", "glow"));
+    void pop.offsetWidth;
+    pop.classList.add("go"); big.classList.add("bump"); stage.classList.add("glow");
+    countUp(from, to);
+    clearTimeout(popTimer); popTimer = setTimeout(() => { pop.classList.remove("go"); stage.classList.remove("glow"); }, 4400);
+  }
+
+  const DEFAULTS = {"account": "mountingnyc", "goal_followers": null, "post_days": ["Mon", "Wed", "Thu", "Fri"], "talking_points": [{"kind": "Myth", "text": "Expensive HDMI cables give a better picture."}, {"kind": "Myth", "text": "A soundbar is the same as a home theater."}, {"kind": "Myth", "text": "Wi-Fi is enough for streaming in every room."}, {"kind": "Myth", "text": "Smart TV apps replace a real streamer."}, {"kind": "Mistake", "text": "Mounting the TV too high, or over the fireplace without a mantel mount."}, {"kind": "Mistake", "text": "In-wall power kits that are not up to code."}, {"kind": "Mistake", "text": "A $60 swivel mount on a $3,000 TV. Studs, shear vs hanging weight."}, {"kind": "Video idea", "text": "Hiding cables in a brick wall."}, {"kind": "Video idea", "text": "Frame TV alternatives: Hisense, LG, Sony."}, {"kind": "Video idea", "text": "ASMR unboxing during TV testing. Logo in the shot."}]};
+  let points = [], pi = 0;
+  function rotate() {
+    if (!points.length) return;
+    const el = $("#tp-text"); el.style.opacity = 0;
+    setTimeout(() => {
+      const p = points[pi++ % points.length];
+      $("#tp-kind").textContent = p.kind; el.textContent = p.text; el.style.opacity = 1;
+    }, 600);
+  }
+
+  async function load() {
+    // Hosted by n8n: /signage page reads its sibling /data endpoint (n8n data table rows).
+    const remote = /\/signage\/?$/.test(location.pathname) ? location.href.split(/[?#]/)[0].replace(/\/signage\/?$/, "/data") : null;
+    let snap = null;
+    if (remote) {
+      const rows = await getJSON(remote);
+      const list = (Array.isArray(rows) ? rows : (rows && rows.data) || []).filter((r) => r.followers != null)
+        .sort((a, b) => (Number(a.id) || 0) - (Number(b.id) || 0))
+        .map((r) => ({ date: r.date, followers: Number(r.followers), posts: Number(r.posts), following: Number(r.following), source: r.source }));
+      if (list.length) snap = Object.assign({}, DEFAULTS, { snapshots: list });
+    }
+    if (!snap) snap = await getJSON("data/snapshots.json");
+    const live = await getJSON("data/instagram.json"); // only real data; sample.json is never shown here
+    if (!snap) { $("#src").textContent = "Missing data/snapshots.json"; return; }
+    const list = snap.snapshots || [];
+    const first = list[0], last = list[list.length - 1];
+    let followers = last.followers, posts = last.posts, following = last.following;
+    let asOf = last.date, source = remote && list.length > 1 ? "Instagram, checked hourly" : "Profile snapshot";
+    const useLive = live && !live.is_sample && live.account && nyDate(new Date(live.generated_at)) >= last.date;
+    if (useLive) {
+      followers = live.account.followers_count != null ? live.account.followers_count : followers;
+      posts = live.account.media_count != null ? live.account.media_count : posts;
+      following = live.account.follows_count != null ? live.account.follows_count : following;
+      asOf = nyDate(new Date(live.generated_at)); source = "Instagram API";
+    }
+    $("#handle").textContent = "@" + (snap.account || "mountingnyc");
+    if (DEMO) followers += demoExtra;
+    const prevSeen = shown != null ? shown : store.get();
+    if (prevSeen != null && followers > prevSeen) celebrate(prevSeen, followers);
+    else $("#followers").textContent = fmt.format(followers);
+    shown = followers; if (!DEMO) store.set(followers);
+    const gain = followers - first.followers;
+    $("#delta").innerHTML = gain === 0
+      ? `Starting point, ${nice(first.date)}`
+      : `<b>${gain >= 0 ? "+" : "-"}${fmt.format(Math.abs(gain))}</b> since ${nice(first.date)} (${fmt.format(first.followers)})`;
+
+    if (snap.goal_followers) {
+      const g = snap.goal_followers, pct = Math.min(1, (followers - first.followers) / Math.max(1, g - first.followers));
+      $("#goal").hidden = false; $("#goal-fill").style.width = Math.max(0.5, pct * 100) + "%";
+      $("#goal-left").textContent = `${fmt.format(g - followers)} to go`; $("#goal-right").textContent = `Goal ${fmt.format(g)}`;
+    }
+
+    // This week's posting rhythm (NY time, Monday start)
+    const today = nyDay(new Date());
+    const ti = DAYS.indexOf(today);
+    const monday = new Date(); monday.setDate(monday.getDate() - ti);
+    const weekStart = nyDate(monday);
+    const postDays = new Set((useLive ? live.posts : []).filter((p) => nyDate(new Date(p.timestamp)) >= weekStart).map((p) => nyDay(new Date(p.timestamp))));
+    const plan = snap.post_days || [];
+    const doneCount = plan.filter((d) => postDays.has(d)).length;
+    const nextDay = plan.find((d) => DAYS.indexOf(d) >= ti && !postDays.has(d));
+    const week = DAYS.slice(0, 5).concat(DAYS.slice(5)).map((d) =>
+      `<div class="day ${plan.includes(d) ? "post" : ""} ${postDays.has(d) ? "done" : ""} ${d === today ? "today" : ""}">${d}</div>`).join("");
+
+    // Growth: follower history from snapshots plus live daily counts.
+    const hist = list.map((x) => ({ date: x.date, f: x.followers }));
+    if (useLive) (live.daily || []).forEach((r) => r.follower_count != null && hist.push({ date: r.date, f: r.follower_count }));
+    hist.sort((a, b) => a.date.localeCompare(b.date));
+    const todayISO = nyDate(new Date());
+    const base = (cut) => [...hist].reverse().find((h) => h.date < cut) || hist.find((h) => h.date >= cut);
+    const growth = (cut, label) => {
+      const b = base(cut);
+      if (!b) return { v: "n/a", s: "No count yet" };
+      const g = followers - b.f;
+      return { v: (g > 0 ? "+" : g < 0 ? "-" : "") + fmt.format(Math.abs(g)), up: g > 0, s: b.date < cut ? label : `since first count ${nice(b.date)}` };
+    };
+    const tToday = growth(todayISO, "new followers today"), tWeek = growth(weekStart, "new followers this week");
+    const tiles = [
+      Object.assign({ k: "Today" }, tToday),
+      Object.assign({ k: "This week" }, tWeek),
+      { k: "Posts", v: fmt.format(posts), s: first.posts !== posts ? `+${posts - first.posts} since start` : "on the grid" },
+    ];
+    if (useLive && (live.daily && live.daily.length)) {
+      const d30 = live.daily.slice(-30), sum = (k) => d30.reduce((t, r) => t + (r[k] || 0), 0);
+      tiles.push({ k: "Website taps, 30 days", v: fmt.format(sum("website_clicks")), s: `${compact.format(sum("reach"))} accounts reached` });
+    } else {
+      tiles.push({ k: "Following", v: fmt.format(following), s: "accounts" });
+    }
+    tiles.push({ wide: true, k: "Posting plan this week", html: `<div class="week">${week}</div>`,
+      s: useLive ? `${doneCount} of ${plan.length} posted${nextDay ? `. Next: ${nextDay}` : ""}` : (plan.includes(today) ? "Today is a post day" : `Next post day: ${nextDay || plan[0]}`) });
+    $("#tiles").innerHTML = tiles.map((t) => `<div class="tile ${t.wide ? "wide" : ""}"><div class="k">${t.k}</div>${t.html || `<div class="v ${t.up ? "up" : ""}">${t.v}</div>`}<div class="s">${t.s}</div></div>`).join("");
+
+    $("#src").innerHTML = DEMO ? `<span class="demo">Demo mode</span><br>simulated new followers` : `${source}<br>as of ${nice(asOf)}`;
+    points = snap.talking_points || [];
+    if (!$("#tp-text").textContent) rotate();
+  }
+  load();
+  setInterval(rotate, 20000);
+  setInterval(load, 60 * 1000);               // check for new followers every minute
+  if (DEMO) setInterval(() => { demoExtra += 1; load(); }, 12000);
+  setTimeout(() => location.reload(), 6 * 3600 * 1000); // full reload every 6 hours
+})();
+</script>
+</body>
+</html>
