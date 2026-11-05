@@ -1,7 +1,7 @@
 """Builds tv.html: a static, old-browser-safe version of the signage for Zoom.
 Numbers are baked in from data/snapshots.json. Run: python3 build_tv.py
 """
-import json, datetime, html
+import json, datetime, html, base64
 
 d = json.load(open("data/snapshots.json"))
 snaps = d["snapshots"]
@@ -29,7 +29,6 @@ dayhtml = "".join('<td class="day%s%s">%s</td>' % (" post" if x in plan else "",
 
 page = """<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="900">
 <title>MountingNYC Instagram</title>
 <style>
 * { box-sizing: border-box; }
@@ -67,7 +66,7 @@ html, body { margin: 0; height: 100%%; background: #001D35; color: #FFFEF2; font
 </style></head>
 <body>
 <div class="bar"><table><tr>
-<td><img class="logo" src="assets/mnyc-logo-white.png" alt=""><span class="word">MountingNYC</span><span class="pill">INSTAGRAM</span></td>
+<td><img class="logo" src="%(logo)s" alt=""><span class="word">MountingNYC</span><span class="pill">INSTAGRAM</span></td>
 <td class="clock" id="clock"></td>
 </tr></table></div>
 <table class="main"><tr>
@@ -100,6 +99,7 @@ function tick() {
   if (el) el.innerHTML = h + ":" + pad(d.getMinutes()) + " " + ap;
 }
 tick(); setInterval(tick, 10000);
+setTimeout(function () { window.location.reload(); }, 900000);
 </script>
 </body></html>
 """ % {
@@ -113,6 +113,7 @@ tick(); setInterval(tick, 10000);
     "dayhtml": dayhtml,
     "tp_kind": html.escape(tp["kind"].upper()), "tp_text": html.escape(tp["text"]),
     "asof": today.strftime("%b %-d, %Y"),
+    "logo": "data:image/png;base64," + base64.b64encode(open("assets/mnyc-logo-white.png", "rb").read()).decode(),
 }
 open("tv.html", "w").write(page)
 print("tv.html built:", last["followers"], "followers")
