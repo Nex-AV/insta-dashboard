@@ -208,10 +208,10 @@ body { font-family: var(--sans); }
     let snap = null;
     if (remote) {
       const rows = await getJSON(remote);
-      const list = (Array.isArray(rows) ? rows : rows?.data || []).filter((r) => r.followers != null)
+      const list = (Array.isArray(rows) ? rows : (rows && rows.data) || []).filter((r) => r.followers != null)
         .sort((a, b) => (Number(a.id) || 0) - (Number(b.id) || 0))
         .map((r) => ({ date: r.date, followers: Number(r.followers), posts: Number(r.posts), following: Number(r.following), source: r.source }));
-      if (list.length) snap = { ...DEFAULTS, snapshots: list };
+      if (list.length) snap = Object.assign({}, DEFAULTS, { snapshots: list });
     }
     if (!snap) snap = await getJSON("data/snapshots.json");
     const live = await getJSON("data/instagram.json"); // only real data; sample.json is never shown here
@@ -222,14 +222,14 @@ body { font-family: var(--sans); }
     let asOf = last.date, source = remote && list.length > 1 ? "Instagram, checked hourly" : "Profile snapshot";
     const useLive = live && !live.is_sample && live.account && nyDate(new Date(live.generated_at)) >= last.date;
     if (useLive) {
-      followers = live.account.followers_count ?? followers;
-      posts = live.account.media_count ?? posts;
-      following = live.account.follows_count ?? following;
+      followers = live.account.followers_count != null ? live.account.followers_count : followers;
+      posts = live.account.media_count != null ? live.account.media_count : posts;
+      following = live.account.follows_count != null ? live.account.follows_count : following;
       asOf = nyDate(new Date(live.generated_at)); source = "Instagram API";
     }
     $("#handle").textContent = "@" + (snap.account || "mountingnyc");
     if (DEMO) followers += demoExtra;
-    const prevSeen = shown ?? store.get();
+    const prevSeen = shown != null ? shown : store.get();
     if (prevSeen != null && followers > prevSeen) celebrate(prevSeen, followers);
     else $("#followers").textContent = fmt.format(followers);
     shown = followers; if (!DEMO) store.set(followers);
@@ -270,11 +270,11 @@ body { font-family: var(--sans); }
     };
     const tToday = growth(todayISO, "new followers today"), tWeek = growth(weekStart, "new followers this week");
     const tiles = [
-      { k: "Today", ...tToday },
-      { k: "This week", ...tWeek },
+      Object.assign({ k: "Today" }, tToday),
+      Object.assign({ k: "This week" }, tWeek),
       { k: "Posts", v: fmt.format(posts), s: first.posts !== posts ? `+${posts - first.posts} since start` : "on the grid" },
     ];
-    if (useLive && live.daily?.length) {
+    if (useLive && (live.daily && live.daily.length)) {
       const d30 = live.daily.slice(-30), sum = (k) => d30.reduce((t, r) => t + (r[k] || 0), 0);
       tiles.push({ k: "Website taps, 30 days", v: fmt.format(sum("website_clicks")), s: `${compact.format(sum("reach"))} accounts reached` });
     } else {
