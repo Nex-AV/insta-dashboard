@@ -1,0 +1,20 @@
+{
+ "account": "mountingnyc",
+ "goal_followers": null,
+ "post_days": ["Mon", "Wed", "Thu", "Fri"],
+ "snapshots": [
+  { "date": "2026-11-05", "followers": 383, "posts": 23, "following": 23, "source": "Instagram profile, starting point" }
+ ],
+ "talking_points": [
+  { "kind": "Myth", "text": "Expensive HDMI cables give a better picture." },
+  { "kind": "Myth", "text": "A soundbar is the same as a home theater." },
+  { "kind": "Myth", "text": "Wi-Fi is enough for streaming in every room." },
+  { "kind": "Myth", "text": "Smart TV apps replace a real streamer." },
+  { "kind": "Mistake", "text": "Mounting the TV too high, or over the fireplace without a mantel mount." },
+  { "kind": "Mistake", "text": "In-wall power kits that are not up to code." },
+  { "kind": "Mistake", "text": "A $60 swivel mount on a $3,000 TV. Studs, shear vs hanging weight." },
+  { "kind": "Video idea", "text": "Hiding cables in a brick wall." },
+  { "kind": "Video idea", "text": "Frame TV alternatives: Hisense, LG, Sony." },
+  { "kind": "Video idea", "text": "ASMR unboxing during TV testing. Logo in the shot." }
+ ]
+}
