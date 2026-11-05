@@ -33,41 +33,41 @@ page = """<!doctype html>
 <style>
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%%; background: #001D35; color: #FFFEF2; font-family: Helvetica, Arial, sans-serif; overflow: hidden; }
-.top { height: 7vmin; }
-.bar { background: #1F5F7A; height: 9vmin; border-bottom: 0.6vmin solid #E1306C; padding: 0 4vmin; white-space: nowrap; overflow: hidden; }
+.top { height: 7vh; }
+.bar { background: #1F5F7A; height: 9vh; border-bottom: 0.6vh solid #E1306C; padding: 0 4vh; white-space: nowrap; overflow: hidden; }
 .bar table { height: 100%%; border-collapse: collapse; }
 .bar td { vertical-align: middle; padding: 0; }
-.logo { height: 5vmin; vertical-align: middle; margin-right: 2vmin; }
-.word { font-size: 3.6vmin; font-weight: bold; vertical-align: middle; }
-.pill { display: inline-block; margin-left: 2.4vmin; padding: 0.8vmin 1.8vmin; border-radius: 4vmin; background: #E1306C; color: #fff; font-size: 2vmin; font-weight: bold; letter-spacing: 0.3vmin; vertical-align: middle; }
-.main { width: 100%%; height: calc(100vh - 30vmin); border-collapse: collapse; table-layout: fixed; }
-.mcell { vertical-align: middle; padding: 0 4vmin; }
-.eyebrow { font-size: 2.4vmin; font-weight: bold; letter-spacing: 0.5vmin; color: #E1306C; }
-.handle { font-size: 3vmin; color: #A3B2BA; margin-top: 0.8vmin; font-family: "Courier New", monospace; }
-.big { font-family: Georgia, "Times New Roman", serif; font-size: 24vmin; line-height: 1; margin: 1vmin 0; }
-.delta { font-size: 2.8vmin; color: #A3B2BA; }
+.logo { height: 5vh; vertical-align: middle; margin-right: 2vh; }
+.word { font-size: 3.6vh; font-weight: bold; vertical-align: middle; }
+.pill { display: inline-block; margin-left: 2.4vh; padding: 0.8vh 1.8vh; border-radius: 4vh; background: #E1306C; color: #fff; font-size: 2vh; font-weight: bold; letter-spacing: 0.3vh; vertical-align: middle; }
+.main { width: 100%%; height: 70vh; border-collapse: collapse; table-layout: fixed; }
+.mcell { vertical-align: middle; padding: 0 4vh; }
+.eyebrow { font-size: 2.4vh; font-weight: bold; letter-spacing: 0.5vh; color: #E1306C; }
+.handle { font-size: 3vh; color: #A3B2BA; margin-top: 0.8vh; font-family: "Courier New", monospace; }
+.big { font-family: Georgia, "Times New Roman", serif; font-size: 24vh; line-height: 1; margin: 1vh 0; }
+.delta { font-size: 2.8vh; color: #A3B2BA; }
 .delta b { color: #E1306C; }
-.tiles { width: 100%%; table-layout: fixed; border-collapse: separate; border-spacing: 0.3vmin; background: #0b3350; }
-.tile { background: #032844; padding: 2.4vmin 2.4vmin; width: 50%%; vertical-align: top; }
-.k { font-size: 1.9vmin; font-weight: bold; letter-spacing: 0.3vmin; color: #A3B2BA; white-space: nowrap; }
-.v { font-family: Georgia, "Times New Roman", serif; font-size: 8vmin; line-height: 1.1; }
+.tiles { width: 100%%; table-layout: fixed; border-collapse: separate; border-spacing: 0.3vh; background: #0b3350; }
+.tile { background: #032844; padding: 2.4vh 2.4vh; width: 50%%; vertical-align: top; }
+.k { font-size: 1.9vh; font-weight: bold; letter-spacing: 0.3vh; color: #A3B2BA; white-space: nowrap; }
+.v { font-family: Georgia, "Times New Roman", serif; font-size: 8vh; line-height: 1.1; }
 .v.up { color: #E1306C; }
-.s { font-size: 2vmin; color: #A3B2BA; }
-.week { width: 100%%; table-layout: fixed; border-collapse: separate; border-spacing: 0.5vmin 0; margin-top: 1vmin; }
-.day { text-align: center; padding: 1.1vmin 0; font-size: 2.1vmin; font-weight: bold; color: #74858F; background: #0a2e49; border: 0.25vmin solid #0a2e49; }
+.s { font-size: 2vh; color: #A3B2BA; }
+.week { width: 100%%; table-layout: fixed; border-collapse: separate; border-spacing: 0.5vh 0; margin-top: 1vh; }
+.day { text-align: center; padding: 1.1vh 0; font-size: 2.1vh; font-weight: bold; color: #74858F; background: #0a2e49; border: 0.25vh solid #0a2e49; }
 .day.post { color: #FFFEF2; background: #154A61; border-color: #154A61; }
 .day.today { border-color: #E1306C; }
-.foot { height: 14vmin; border-top: 0.2vmin solid #0b3350; padding: 0 4vmin; }
+.foot { height: 14vh; border-top: 0.2vh solid #0b3350; padding: 0 4vh; }
 .foot table { width: 100%%; height: 100%%; border-collapse: collapse; }
 .foot td { vertical-align: middle; padding: 0; }
-.chip { display: inline-block; background: #1F5F7A; color: #fff; padding: 1vmin 1.4vmin; font-size: 1.9vmin; font-weight: bold; letter-spacing: 0.3vmin; margin-right: 2.4vmin; white-space: nowrap; }
-.tp { font-family: Georgia, "Times New Roman", serif; font-size: 3.4vmin; line-height: 1.2; }
-.src { text-align: right; font-size: 1.6vmin; color: #A3B2BA; white-space: nowrap; padding-left: 2vmin !important; }
+.chip { display: inline-block; background: #1F5F7A; color: #fff; padding: 1vh 1.4vh; font-size: 1.9vh; font-weight: bold; letter-spacing: 0.3vh; margin-right: 2.4vh; white-space: nowrap; }
+.tp { font-family: Georgia, "Times New Roman", serif; font-size: 3.4vh; line-height: 1.2; }
+.src { text-align: right; font-size: 1.6vh; color: #A3B2BA; white-space: nowrap; padding-left: 2vh !important; }
 </style></head>
 <body>
 <div class="top"></div>
 <div class="bar"><table><tr>
-<td><img class="logo" src="%(logo)s" alt=""><span class="word">MountingNYC</span><span class="pill">INSTAGRAM</span></td>
+<td><span class="word">MountingNYC</span><span class="pill">INSTAGRAM</span></td>
 </tr></table></div>
 <table class="main"><tr>
 <td class="mcell" style="width:46%%">
@@ -90,9 +90,6 @@ html, body { margin: 0; height: 100%%; background: #001D35; color: #FFFEF2; font
 <td class="tp">%(tp_text)s</td>
 <td class="src">Updated %(asof)s</td>
 </tr></table></div>
-<script>
-setTimeout(function () { window.location.reload(); }, 900000);
-</script>
 </body></html>
 """ % {
     "account": html.escape(d.get("account", "mountingnyc")),
