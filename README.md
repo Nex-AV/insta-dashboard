@@ -12,3 +12,6 @@ Office TV screen for @mountingnyc, shown on Zoom Digital Signage.
 `tv.html` is a static, old-browser-safe copy for Zoom Digital Signage: no web fonts, no data loading, numbers baked in.
 After editing `data/snapshots.json`, run `python3 build_tv.py` and commit `tv.html`. It reloads itself every 15 minutes.
 Zoom URL: https://nex-av.github.io/insta-dashboard/tv
+
+## Template for other screens
+`template.html` is the Zoom-proven layout with `{{PLACEHOLDERS}}`. Copy it, fill the placeholders, swap the 4 colors listed at the top, and publish it here as a new file. The rules that keep it working in Zoom are in the comment at the top of the file.

@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{PAGE_TITLE}}</title>
+<!--
+  ZOOM SIGNAGE TEMPLATE (proven to render in Zoom Rooms Digital Signage)
+  Rules that keep it working in Zoom's built-in browser:
+  - No images (not even embedded ones), no web fonts, no meta refresh, no scripts.
+  - Layout with tables, sizes in vh only.
+  - Top 7vh is left empty for Zoom's banner (room name, time, room code).
+  - Host on a public URL with no login (GitHub Pages works).
+  - In the Zoom playlist, put a blank image after this URL to force a reload.
+
+  To make a new screen: copy this file, replace every {{...}}, swap the 4 colors below.
+  Colors (find and replace):  #001D35 page   #1F5F7A header   #E1306C accent   #032844 tiles
+-->
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #001D35; color: #FFFEF2; font-family: Helvetica, Arial, sans-serif; overflow: hidden; }
+.top { height: 7vh; }
+.bar { background: #1F5F7A; height: 9vh; border-bottom: 0.6vh solid #E1306C; padding: 0 4vh; white-space: nowrap; overflow: hidden; }
+.bar table { height: 100%; border-collapse: collapse; }
+.bar td { vertical-align: middle; padding: 0; }
+.word { font-size: 3.6vh; font-weight: bold; vertical-align: middle; }
+.pill { display: inline-block; margin-left: 2.4vh; padding: 0.8vh 1.8vh; border-radius: 4vh; background: #E1306C; color: #fff; font-size: 2vh; font-weight: bold; letter-spacing: 0.3vh; vertical-align: middle; }
+.main { width: 100%; height: 70vh; border-collapse: collapse; table-layout: fixed; }
+.mcell { vertical-align: middle; padding: 0 4vh; }
+.eyebrow { font-size: 2.4vh; font-weight: bold; letter-spacing: 0.5vh; color: #E1306C; }
+.sub { font-size: 3vh; color: #A3B2BA; margin-top: 0.8vh; }
+.big { font-family: Georgia, "Times New Roman", serif; font-size: 24vh; line-height: 1; margin: 1vh 0; }
+.note { font-size: 2.8vh; color: #A3B2BA; }
+.tiles { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0.3vh; background: #0b3350; }
+.tile { background: #032844; padding: 2.4vh; width: 50%; vertical-align: top; }
+.k { font-size: 1.9vh; font-weight: bold; letter-spacing: 0.3vh; color: #A3B2BA; white-space: nowrap; }
+.v { font-family: Georgia, "Times New Roman", serif; font-size: 8vh; line-height: 1.1; }
+.s { font-size: 2vh; color: #A3B2BA; }
+.wide-text { font-size: 2.6vh; line-height: 1.35; margin-top: 1vh; }
+.foot { height: 14vh; border-top: 0.2vh solid #0b3350; padding: 0 4vh; }
+.foot table { width: 100%; height: 100%; border-collapse: collapse; }
+.foot td { vertical-align: middle; padding: 0; }
+.chip { display: inline-block; background: #1F5F7A; color: #fff; padding: 1vh 1.4vh; font-size: 1.9vh; font-weight: bold; letter-spacing: 0.3vh; margin-right: 2.4vh; white-space: nowrap; }
+.tp { font-family: Georgia, "Times New Roman", serif; font-size: 3.4vh; line-height: 1.2; }
+.src { text-align: right; font-size: 1.6vh; color: #A3B2BA; white-space: nowrap; padding-left: 2vh !important; }
+</style></head>
+<body>
+<div class="top"></div>
+<div class="bar"><table><tr>
+<td><span class="word">{{COMPANY_NAME}}</span><span class="pill">{{SCREEN_LABEL}}</span></td>
+</tr></table></div>
+<table class="main"><tr>
+<td class="mcell" style="width:46%">
+<div class="eyebrow">{{HERO_LABEL}}</div>
+<div class="sub">{{HERO_SUBTITLE}}</div>
+<div class="big">{{HERO_NUMBER}}</div>
+<div class="note">{{HERO_NOTE}}</div>
+</td>
+<td class="mcell" style="width:54%">
+<table class="tiles">
+<tr><td class="tile"><div class="k">{{TILE1_LABEL}}</div><div class="v">{{TILE1_VALUE}}</div><div class="s">{{TILE1_NOTE}}</div></td>
+<td class="tile"><div class="k">{{TILE2_LABEL}}</div><div class="v">{{TILE2_VALUE}}</div><div class="s">{{TILE2_NOTE}}</div></td></tr>
+<tr><td class="tile"><div class="k">{{TILE3_LABEL}}</div><div class="v">{{TILE3_VALUE}}</div><div class="s">{{TILE3_NOTE}}</div></td>
+<td class="tile"><div class="k">{{TILE4_LABEL}}</div><div class="v">{{TILE4_VALUE}}</div><div class="s">{{TILE4_NOTE}}</div></td></tr>
+<tr><td class="tile" colspan="2"><div class="k">{{WIDE_LABEL}}</div><div class="wide-text">{{WIDE_TEXT}}</div></td></tr>
+</table>
+</td></tr></table>
+<div class="foot"><table><tr>
+<td style="width:1%"><span class="chip">{{FOOTER_TAG}}</span></td>
+<td class="tp">{{FOOTER_MESSAGE}}</td>
+<td class="src">{{UPDATED_LINE}}</td>
+</tr></table></div>
+</body></html>
